@@ -5,6 +5,9 @@
  */
 package me.testing.pieces;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  *
  * @author Jéssica
@@ -12,7 +15,7 @@ package me.testing.pieces;
 public class Case {
     private final int[] position = {0,0};
     private boolean etat;//touche ou pas touche
-    private boolean aBateau;// appartient a un bateau ou pas
+    private boolean aBateau;// appartient a un bateau(true) ou pas(false)
    
     public Case(int x, int y)
     {
@@ -30,10 +33,13 @@ public class Case {
     }
     /**
      * retourne si la case est vide ou pas
+     * true ==  vide
+     * false ==  pleine
+     *
      **/
     public boolean isEmpty()
     {
-        return this.aBateau;
+        return !this.aBateau;
     }
     /**
      * retoune une cle a partir de la position
@@ -53,7 +59,16 @@ public class Case {
      * change la valeur de la case aBateau si elle est a true elle passe a false et l'inverse aussi
     */
     public void remplire()
-    {aBateau = !aBateau;
+    {
+        if (!aBateau)
+            aBateau = true;
+    }
+    /**
+     * enleve le bateau de la case
+     */
+    public void vider(){
+        if(aBateau)
+            aBateau = false;
     }
     /**
      * case touche ou pas
@@ -62,5 +77,23 @@ public class Case {
     {
         return this.etat;
     }
-    
+
+    @Override
+    public String toString() {
+        return this.getKEy();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Case aCase)) return false;
+        return etat == aCase.etat && aBateau == aCase.aBateau && Arrays.equals(position, aCase.position);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(etat, aBateau);
+        result = 31 * result + Arrays.hashCode(position);
+        return result;
+    }
 }
