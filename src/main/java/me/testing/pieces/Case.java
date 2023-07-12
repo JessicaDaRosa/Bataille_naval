@@ -5,6 +5,8 @@
  */
 package me.testing.pieces;
 
+import me.testing.Enumerations.Alphabet;
+
 import java.util.Arrays;
 import java.util.Objects;
 

@@ -1,6 +1,6 @@
 package me.testing;
 
-import me.testing.pieces.Alphabet;
+import me.testing.Enumerations.Alphabet;
 
 import me.testing.pieces.Grille;
 
